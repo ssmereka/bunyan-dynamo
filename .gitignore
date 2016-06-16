@@ -1,0 +1,9 @@
+# Server Modules installed using npm.
+node_modules
+npm-debug.log
+
+# Mac OS temp files.
+.DS_STORE
+
+# Webstorm project files.
+.idea

@@ -1,0 +1,33 @@
+{
+  "name": "bunyan-dynamo-example",
+  "version": "0.0.1",
+  "author": "Scott Smereka",
+  "bugs": {
+    "url": "http://github.com/ssmereka/bunyan-dynamo/issues"
+  },
+  "contributors": [],
+  "devDependencies": {},
+  "dependencies": {
+    "bunyan": "^1.8.1",
+    "bunyan-dynamo"
+  },
+  "description": "Example application for bunyan-dynamo.",
+  "engines": {
+    "node": ">= 6.2.0"
+  },
+  "homepage": "https://github.com/ssmereka/bunyan-dynamo#readme",
+  "keywords": [
+    "Bunyan-Dynamo",
+    "Example"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssmereka/bunyan-dynamo.git"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
