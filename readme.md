@@ -3,7 +3,7 @@ A <a href="https://github.com/trentm/node-bunyan#streams-introduction" target="_
 
 <a href="https://nodei.co/npm/bunyan-dynamo/" target="_blank"><img src="https://nodei.co/npm/bunyan-dynamo.png?downloads=true&downloadRank=true" /></a>
 
-<a href="https://travis-ci.org/ssmereka/bunyan-dynamo" target="_blank"><img src="https://travis-ci.org/ssmereka/bunyan-dynamo.svg" /></a> <a href="https://david-dm.org/ssmereka/bunyan-dynamo" target="_blank"><img src="https://david-dm.org/ssmereka/bunyan-dynamo.svg" /></a> <a href="https://gratipay.com/ScottSmereka/" target="_blank"><img src="http://img.shields.io/gratipay/ScottSmereka.svg" /> <a href="https://codecov.io/github/ssmereka/bunyan-dynamo?branch=master" target="_blank"><img src="https://codecov.io/github/ssmereka/bunyan-dynamo/coverage.svg?branch=master" /></a>
+<a href="https://david-dm.org/ssmereka/bunyan-dynamo" target="_blank"><img src="https://david-dm.org/ssmereka/bunyan-dynamo.svg" /></a> <a href="https://gratipay.com/ScottSmereka/" target="_blank"><img src="http://img.shields.io/gratipay/ScottSmereka.svg" />
 
 ## Getting Started
 
