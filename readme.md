@@ -39,8 +39,20 @@ var bunyanOptions = {
 
 var log = bunyan.createLogger(bunyanOptions);
 
-log.info("Logging to DynamoDB and to console.");
+log.info("Logging to DynamoDB.");
 ```
+
+Here is what the record created in DynamoDB looks like.
+<img src="http://i.imgur.com/XvqwlDI.png"></img>
+
+### Time
+Time is stored as a number in milliseconds since January 1, 1970, 00:00:00 UTC.  Amazon's SDK may return this value as a string, so use the following to convert time into a zulu time object.
+```javascript
+var time = "1466190023000";           // This is the time value returned from DynamoDB using amazon's SDK.
+
+console.log(new Date(Number(time)));  // Fri Jun 17 2016 15:00:23 GMT-0400 (EDT)
+```
+
 
 ## Options
 
