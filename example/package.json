@@ -9,7 +9,8 @@
   "devDependencies": {},
   "dependencies": {
     "bunyan": "^1.8.1",
-    "bunyan-dynamo"
+    "bunyan-dynamo": "git+https://github.com/ssmereka/bunyan-dynamo.git#HEAD",
+    "bunyan-pretty-stream": "^1.0.1"
   },
   "description": "Example application for bunyan-dynamo.",
   "engines": {

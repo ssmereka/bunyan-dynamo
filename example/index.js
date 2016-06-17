@@ -1,5 +1,8 @@
 var bunyan = require('bunyan'),
-	DynamoStream = require('./dynamoStream.js');
+	path = require('path'),
+	PrettyStream = require('bunyan-pretty-stream');
+
+var BunyanDynamo = require(path.resolve(__dirname, '../lib/index.js'));
 
 var bunyanDynamoOptions = {
 	"aws": {
@@ -7,17 +10,20 @@ var bunyanDynamoOptions = {
     },
     "tableName": "myAppLogs",
     "tableHashKey": "id",
-    "tableHashType": DynamoStream.TYPE_STRING
+    "tableHashType": BunyanDynamo.TYPE_STRING
 };
 
 var bunyanOptions = {
 	name: "MyAppLogger",
 	serializers: bunyan.stdSerializers,
-    stream: {
+    streams: [{
     	level: 'info',
-    	stream: new DynamoStream(options),
+    	stream: new BunyanDynamo(bunyanDynamoOptions),
     	type: 'raw'
-    }
+    }, {
+    	level: 'info',
+    	stream: new PrettyStream()
+    }]
 }
 
 var log = bunyan.createLogger(bunyanOptions);
