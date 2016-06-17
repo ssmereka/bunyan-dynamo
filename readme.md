@@ -3,7 +3,7 @@ A <a href="https://github.com/trentm/node-bunyan#streams-introduction" target="_
 
 <a href="https://nodei.co/npm/bunyan-dynamo/" target="_blank"><img src="https://nodei.co/npm/bunyan-dynamo.png?downloads=true&downloadRank=true" /></a>
 
-<a href="https://david-dm.org/ssmereka/bunyan-dynamo" target="_blank"><img src="https://david-dm.org/ssmereka/bunyan-dynamo.svg" /></a> <a href="https://gratipay.com/ScottSmereka/" target="_blank"><img src="http://img.shields.io/gratipay/ScottSmereka.svg" />
+<a href="https://david-dm.org/ssmereka/bunyan-dynamo" target="_blank"><img src="https://david-dm.org/ssmereka/bunyan-dynamo.svg" /></a> <a href="https://gratipay.com/ScottSmereka/" target="_blank"><img src="http://img.shields.io/gratipay/ScottSmereka.svg" /></a>
 
 ## Getting Started
 
@@ -77,7 +77,6 @@ console.log(new Date(Number(time)));  // Fri Jun 17 2016 15:00:23 GMT-0400 (EDT)
 | **tableReadCapacity** | Number | ```5``` | AWS read capacity for the table. |
 | **tableWriteCapacity** | Number | ```5``` | AWS write capacity for the table. |
 | **trace** | Boolean | ```false``` | When enabled, debug mode and trace messages will be displayed and additional configurations used to help debug the module. |
-
 
 
 ## AWS Credentials
