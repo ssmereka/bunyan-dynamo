@@ -46,7 +46,8 @@ Here is what the record created in DynamoDB looks like.
 <img src="http://i.imgur.com/XvqwlDI.png"></img>
 
 ### Time
-Time is stored as a number in milliseconds since January 1, 1970, 00:00:00 UTC.  Amazon's SDK may return this value as a string, so use the following to convert time into a zulu time object.
+Time is stored as a number in milliseconds since January 1, 1970, 00:00:00 UTC (zulu time).  Amazon's SDK may return this value as a string, so use the following to convert time into an object.
+
 ```javascript
 var time = "1466190023000";           // This is the time value returned from DynamoDB using amazon's SDK.
 
