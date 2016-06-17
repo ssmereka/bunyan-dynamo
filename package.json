@@ -22,6 +22,7 @@
     "Dynamo",
     "DynamoDB",
     "Dynamo DB",
+    "DB",
     "Log",
     "Logger",
     "Stream"
@@ -34,7 +35,6 @@
     "url": "git+https://github.com/ssmereka/bunyan-dynamo.git"
   },
   "scripts": {
-    "test": "mocha",
-    "test-travis": "istanbul cover -x '**_test.js' -x '**_data.js' -x '**/test.js' -x '**/dataManager/**' ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec"
+    "test": "mocha"
   }
 }

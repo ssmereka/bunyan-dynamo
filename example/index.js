@@ -6,7 +6,7 @@ var BunyanDynamo = require(path.resolve(__dirname, '../lib/index.js'));
 
 var bunyanDynamoOptions = {
 	"aws": {
-        "profile": "livio"
+        "profile": "default"
     },
     "tableName": "myAppLogs",
     "tableHashKey": "id",
@@ -28,4 +28,4 @@ var bunyanOptions = {
 
 var log = bunyan.createLogger(bunyanOptions);
 
-log.info("It worked!");
+log.info("Logging to DynamoDB and to console.");
