@@ -84,7 +84,7 @@ The module can take advantage of some optional environment variables.
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | **APP_NAME** | String | ```undefined``` | Name of the application.  Used to uniquely generate a table name, if a table name is not already defined in the options object. |
-| **PORT** | String | ```undefined``` | Port the application is listening on.  Used to uniquely generate a table name, if a table name is not already defined in the options object. |
+| **PORT** | Number | ```undefined``` | Port the application is listening on.  Used to uniquely generate a table name, if a table name is not already defined in the options object. |
 
 ## AWS Credentials
 Credentials can either be passed in as options or configured any other way allowed by the [amazon sdk](http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html)
