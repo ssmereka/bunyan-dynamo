@@ -29,6 +29,6 @@
     "url": "git+https://github.com/ssmereka/bunyan-dynamo.git"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "APP_NAME=bunyan-dynamo-example PORT=3000 node index.js"
   }
 }
