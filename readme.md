@@ -69,7 +69,7 @@ console.log(new Date(Number(time)));  // Fri Jun 17 2016 15:00:23 GMT-0400 (EDT)
 | **debug** | Boolean | ```false``` | When enabled, additional log messages will be displayed and configurations used to help debug the module. |
 | **enableHostname** | Boolean | ```true``` | When enabled, the hostname will be included as an attribute in each item saved to the DynamoDB table. |
 | **sendInterval** | Number | ```5000``` | How often, in milliseconds, to send log messages to the DynamoDB service.  Default send interval in debug and trace mode is ```1000```. |
-| **tableName** | String | ```APP_NAME,HOSTNAME,PORT``` | Name of the database table.  Must be unique. |
+| **tableName** | String | ```<APP_NAME>_<HOSTNAME>_<PORT>``` | Name of the database table, which must be unique.  If not defined the module will attempt to create a unique name using the application's name, hostname, and port.  See environment variables. |
 | **tableHashKey** | String | ```id``` | Name of the partial key for the database table. |
 | **tableHashType** | String | ```S``` | Data type of the hash key.  (```S``` stands for String) |
 | **tableRangeKey** | String | ```time``` | Name of the sort key for the database table. |
@@ -83,8 +83,8 @@ The module can take advantage of some optional environment variables.
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| **APP_NAME** | String | ```undefined``` | Name of the application.  Used to uniquely generate a table name, if a table name is not already defined in the options object. |
-| **PORT** | Number | ```undefined``` | Port the application is listening on.  Used to uniquely generate a table name, if a table name is not already defined in the options object. |
+| **APP_NAME** | String | ```undefined``` | Name of the application.  Used to uniquely generate a table name if one has not already been defined in the options object. |
+| **PORT** | Number | ```undefined``` | Port the application is listening on.  Used to uniquely generate a table name if one has not already been defined in the options object. |
 
 ## AWS Credentials
 Credentials can either be passed in as options or configured any other way allowed by the [amazon sdk](http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html)
