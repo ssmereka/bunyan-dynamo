@@ -1,6 +1,6 @@
 {
   "name": "bunyan-dynamo",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Scott Smereka",
   "bugs": {
     "url": "http://github.com/ssmereka/bunyan-dynamo/issues"
@@ -18,14 +18,17 @@
   },
   "homepage": "https://github.com/ssmereka/bunyan-dynamo#readme",
   "keywords": [
-    "Bunyan",
-    "Dynamo",
-    "DynamoDB",
-    "Dynamo DB",
-    "DB",
-    "Log",
-    "Logger",
-    "Stream"
+    "bunyan",
+    "bunyan-dynamodb",
+    "bunyan-dynamo",
+    "dynamo",
+    "dynamodb",
+    "dynamo db",
+    "db",
+    "log",
+    "logger",
+    "node",
+    "stream"
   ],
   "license": "MIT",
   "main": "index.js",
