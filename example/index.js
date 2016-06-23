@@ -26,12 +26,14 @@ var bunyanDynamoOptions = {
   //"trace": false
 };
 
+var bunyanDynamoStream = new BunyanDynamo(bunyanDynamoOptions);
+
 var bunyanOptions = {
 	name: "MyAppLogger",
 	serializers: bunyan.stdSerializers,
     streams: [{
     	level: 'info',
-    	stream: new BunyanDynamo(bunyanDynamoOptions),
+    	stream: bunyanDynamoStream,
     	type: 'raw'
     }, {
     	level: 'info',

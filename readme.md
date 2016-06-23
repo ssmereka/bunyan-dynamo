@@ -88,3 +88,104 @@ The module can take advantage of some optional environment variables.
 
 ## AWS Credentials
 Credentials can either be passed in as options or configured any other way allowed by the [amazon sdk](http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html)
+
+## Static Properties
+| Method | Type | Description |
+|--------|------|-------------|
+| **DYNAMO_TYPE_ARRAY_BINARY** | String | Amazon's DynamoDB data type identifier for an array of binary data. |
+| **DYNAMO_TYPE_ARRAY_MAP** | String | Amazon's DynamoDB data type identifier for an array of map data. |
+| **DYNAMO_TYPE_ARRAY_NUMBER** | String | Amazon's DynamoDB data type identifier for an array of numbers. |
+| **DYNAMO_TYPE_ARRAY_STRING** | String | Amazon's DynamoDB data type identifier for an array of strings. |
+| **DYNAMO_TYPE_BINARY** | String | Amazon's DynamoDB data type identifier for binary data. |
+| **DYNAMO_TYPE_BOOLEAN** | String | Amazon's DynamoDB data type identifier for a boolean variable. |
+| **DYNAMO_TYPE_MAP** | String | Amazon's DynamoDB data type identifier for map data. |
+| **DYNAMO_TYPE_NULL** | String | Amazon's DynamoDB data type identifier for null data. |
+| **DYNAMO_TYPE_NUMBER** | String | Amazon's DynamoDB data type identifier for a number. |
+| **DYNAMO_TYPE_STRING** | String | Amazon's DynamoDB data type identifier for a string. |
+
+### Example
+```javascript
+var BunyanDynamo = require('bunyan-dynamo');
+console.log("The DynamoDB string type identifier is %s.", BunyanDynamo.DYNAMO_TYPE_STRING); // 
+```
+
+### Example Output
+```
+The DynamoDB string type identifier is S.
+```
+
+## Instance Methods
+
+### Get Config
+Returns the current bunyan-dynamo configuration object.
+
+#### Example
+```javascript
+var BunyanDynamo = require('bunyan-dynamo'),
+    bunyanDynamoStream = new BunyanDynamo();
+
+console.log(bunyanDynamoStream.getConfig());
+```
+
+#### Example Output 
+```javascript
+{ 
+    aws: { 
+        apiVersion: '2012-08-10', 
+        maxRetries: 15, 
+        region: 
+        'us-east-1' 
+    },
+    enableHostname: true,
+    batchSize: 25,
+    sendInterval: 5000,
+    tableName: 'MyAppName_MyHostName_3000',
+    tableHashKey: 'id',
+    tableHashType: 'S',
+    tableRangeKey: 'time',
+    tableRangeType: 'N',
+    tableReadCapacity: 5,
+    tableWriteCapacity: 5
+}
+
+```
+
+### Set Config
+Set or change the configuration options.
+
+#### Example
+```javascript
+var BunyanDynamo = require('bunyan-dynamo'),
+    bunyanDynamoStream = new BunyanDynamo();
+
+bunyanDynamoStream.setConfig({
+    batchSize: 50,
+    sendInterval: 60000,
+    tableName: "MyTableName"
+});
+
+console.log(bunyanDynamoStream.getConfig());
+```
+
+#### Example Output 
+```javascript
+{ 
+    aws: { 
+        apiVersion: '2012-08-10', 
+        maxRetries: 15, 
+        region: 
+        'us-east-1' 
+    },
+    enableHostname: true,
+    batchSize: 50,
+    sendInterval: 60000,
+    tableName: 'MyTableName',
+    tableHashKey: 'id',
+    tableHashType: 'S',
+    tableRangeKey: 'time',
+    tableRangeType: 'N',
+    tableReadCapacity: 5,
+    tableWriteCapacity: 5
+}
+
+```
