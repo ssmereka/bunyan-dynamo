@@ -46,9 +46,40 @@ const DEFAULT_AWS_API_VERSION = "2012-08-10",
 
 var createDynamoValueObject = function (key, value) {
   var obj = {};
-  obj[key] = value.toString();  // All types must be converted to a string.
+  obj[key] = (typeof value === 'object') ? value : value.toString();  // All types must be converted to a string.
   return obj;
 };
+
+// detect the DynamoDB type of a value based on its javascript type
+var detectDynamoType  = function (value) {
+    // handle non-object cases
+    if (value === null || value === undefined) {
+        return DYNAMO_TYPE_NULL;
+    } else if (typeof value === 'number') {
+        return DYNAMO_TYPE_NUMBER;
+    } else if (typeof value === 'boolean') {
+        return DYNAMO_TYPE_BOOLEAN;
+    } else if (typeof value !== 'object') {
+        return DYNAMO_TYPE_STRING;
+    }
+
+    // handle arrays
+    if (Array.isArray(value)) {
+        var types = value.map(detectDynamoType);
+        // ignore arrays with multiple child data types
+        if ((new Set(value)).size > 1) { return DYNAMO_TYPE_STRING; }
+        // handle arrays of uniform simple child data types
+        if (types[0] === DYNAMO_TYPE_NUMBER) { return DYNAMO_TYPE_ARRAY_NUMBER; }
+        if (types[0] === DYNAMO_TYPE_STRING) { return DYNAMO_TYPE_ARRAY_STRING; }
+        if (types[0] === DYNAMO_TYPE_MAP) { return DYNAMO_TYPE_ARRAY_MAP; }
+        return DYNAMO_TYPE_STRING;
+    }
+
+    // handle maps (string -> string)
+    if (Object.keys(value).every(key => (typeof value[key] === 'string'))) { return DYNAMO_TYPE_MAP; }
+
+    return DYNAMO_TYPE_STRING;
+}
 
 var buildTableName = function () {
   var tableName = "";
@@ -255,6 +286,13 @@ class DynamoStream {
       item.v = createDynamoValueObject(DYNAMO_TYPE_NUMBER, record.v);
     }
 
+    // store all other object properties in the dynamo item as strings
+    var globalKeys = new Set([self.config.tableHashKey, 'time', 'msg', 'level', 'hostname', 'pid', 'v']);
+    var data = {};
+    Object.keys(record).filter(key => !globalKeys.has(key)).map(key => (data[key] = record[key]));
+    item.data = createDynamoValueObject(DYNAMO_TYPE_MAP, AWS.DynamoDB.Converter.marshall(data));
+
+
     this.writeBuffer.push({
       PutRequest: {
         Item: item
@@ -281,10 +319,11 @@ class DynamoStream {
       }
     }
 
-    self.createTable(function (err) {
+    /*self.createTable(function (err) {
       if (err) {
         cb(err);
-      } else {
+      } else {*/
+        console.log('slicing buffer of length', self.writeBuffer.length);
         var requestItems = self.writeBuffer.slice(0, self.config.batchSize);
 
         // build request
@@ -297,6 +336,7 @@ class DynamoStream {
         // remove batched items from buffer
         self.writeBuffer = self.writeBuffer.slice(self.config.batchSize);
 
+          console.log('batchWriteItem', JSON.stringify(batchRequest, null, 4));
         self.db.batchWriteItem(batchRequest, function (err, response) {
           if (err) {
             if(TRACE) { console.log("processWriteQueue(%s/%s): batchWriteItem failed with an error.", self.writeBuffer.length, self.config.batchSize); }
@@ -315,8 +355,8 @@ class DynamoStream {
             cb()
           }
         });
-      }
-    });
+      //}
+    // });
   }
 
   createTable(cb) {
